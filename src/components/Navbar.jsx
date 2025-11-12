@@ -15,7 +15,17 @@ export const Navbar = () => {
 				</div>
 				<div className="">
 					<Link to="/create_contact">
-						<button className="btn btn-primary ml-3">Create Contacts</button>
+						<button className="btn btn-primary ml-3">Create Contact</button>
+					</Link>
+				</div>
+				<div>
+					<Link to = "/">
+						<button className = "btn btn-primary m-3">Return Home</button>
+					</Link>
+				</div>
+				<div className="">
+					<Link to="/demo">
+						<button className="btn btn-primary ml-3">Demo</button>
 					</Link>
 				</div>
 			</div>

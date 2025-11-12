@@ -22,7 +22,7 @@ export const fetchAgenda = async (dispatch, payload) => {
 export const createAgenda = async (dispatch, payload) => {
     let response = await fetch("https://playground.4geeks.com/contact/agendas/pmandries", {
         method: "POST",
-        headers: { "content_type": "application/json" }
+        headers: { "Content_type": "application/json" }
     });
     let data = response.json();
     fetchAgenda(dispatch);
@@ -37,7 +37,7 @@ export const addContact = async (dispatch, payload) => {
     
     let response = await fetch("https://playground.4geeks.com/contact/agendas/pmandries/contacts", {
         method: "POST",
-        headers: { "content_type": "application/jason"},
+        headers: { "Content_type": "application/jason"},
         body: JSON.stringify({
             name: inputName,
             phone: inputPhone,
@@ -59,4 +59,34 @@ export const fetchContacts = async (dispatch, payload) => {
         type: "set_contacts",
         payload: { contacts: data.contacts }
     })
+}
+
+// Edit Contacts
+export const editContact = async (dispatch, payload) => {
+    let editName = payload.name;
+    let editPhone = payload.name;
+    let editEmail = payload.email;
+    let editAddress = payload.address;
+    
+    let response = await fetch("https://playground.4geeks.com/contact/agendas/pmandries/contacts/${id}", {
+        method: "PUT",
+        headers: {"Content_type": "app;ication/json"},
+        body: JSON.stringify ({
+            name: editName,
+            phone: editPhone,
+            email: editEmail,
+            address: editAddress
+        })
+    })
+    // refresh the contact list
+    fetchContacts();
+}
+
+export const deleteContact = async (dispatch, payload) => {
+    let response = await fetch("https://playground.4geeks.com/contact/agendas/pmandries/contacts/${payload}", {
+        method: "DELETE",
+        headers: {"Content_type": "app;ication/json"}
+});
+    // refresh the contact list
+    fetchContacts();
 }

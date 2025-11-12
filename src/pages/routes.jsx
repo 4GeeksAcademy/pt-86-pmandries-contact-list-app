@@ -11,6 +11,8 @@ import { Single } from "./Single";
 import { Demo } from "./Demo";
 import { CreateContact } from "./CreateContact";
 import { ListContacts } from "./ListContacts";
+import { SingleContact } from "./SingleContact";
+import { EditContact } from "./EditContact";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -29,6 +31,8 @@ export const router = createBrowserRouter(
         <Route path="/demo" element={<Demo />} />
         <Route path="/create_contact" element={<CreateContact />} />
         <Route path="/list_contacts" element={<ListContacts />} />
+        <Route path="/single_contact" element={<SingleContact />} />
+        <Route path="/edit_contact" element={<EditContact />} />
       </Route>
     )
 );

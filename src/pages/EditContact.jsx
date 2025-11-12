@@ -2,28 +2,27 @@ import React, { useState } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import { addContact } from "../hooks/actions.js";
 
-export const CreateContact = () => {
+export const EditContact = () => {
     const [contact, setContact] = useState({name: "", phone: "", email: "", address: ""})
     const {store, dispatch, addContact} = useGlobalReducer();
     const navigate = useNavigate();
 
-    const handleCreateContact = async (e) => {
+    const handleEditContact = async (e) => {
         e.preventDefault(); // prevents page reload
 
         if (!contact.name || !contact.phone || !contact.email || !contact.address) {
             alert("Please complete all fields!");
             return;
         }
-        await addContact(contact);
+        await editContact(contact);
         navigate("/list_contacts");
     }
 
     return (
         <div className="container bg-light mt-5 p-3 w-50">
 			<div className = "text-center mt-3">
-				<h3>Add a Contact</h3>
+				<h3>Edit Your Contact</h3>
 			</div>
 			
             <div className = "mb-3">
@@ -32,7 +31,7 @@ export const CreateContact = () => {
 					id = "name"
                     className = "form-control"
                     type = "text"
-					placeholder = "Enter the full name here"
+					placeholder = "Current name displays here"
 					onChange = {(e) => setContact({...contact, name: e.target.value})}
 					value = {contact.name}
 				/>
@@ -44,7 +43,7 @@ export const CreateContact = () => {
                     id = "phone"
                     className = "form-control"
 					type = "text"
-					placeholder = "Enter the full phone number here"
+					placeholder = "Current phone displays here"
 					onChange = {(e) => setContact({...contact, phone: e.target.value})}
 					value = {contact.phone}
 				/>
@@ -56,7 +55,7 @@ export const CreateContact = () => {
                     id = "email"
                     className = "form-control"
 					type = "text"
-					placeholder = "Enter the full email address here"
+					placeholder = "Current email address displays here"
 					onChange = {(e) => setContact({...contact, email: e.target.value})}
 					value = {contact.email}
 				/>
@@ -68,19 +67,19 @@ export const CreateContact = () => {
                     id = "address"
                     className = "form-control"
 					type = "text"
-					placeholder = "Enter the full address here"
+					placeholder = "Current address displays here"
 					onChange = {(e) => setContact({...contact, address: e.target.value})}
 					value = {contact.address}
 				/>
 			</div>
             <button 
                 className = "btn btn-primary m-3"
-                onClick = {(e) => handleCreateContact(e)}
+                onClick = {(e) => handleEditContact(e)}
             >
-                Add Contact
+                Update Contact
             </button>
             <Link to = "/">
-                <button className = "btn btn-primary m-3">Return Home</button>
+                <button className = "btn btn-primary m-3">Back Home</button>
             </Link>
         </div>
     );
