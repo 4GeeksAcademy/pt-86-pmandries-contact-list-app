@@ -1,20 +1,85 @@
+import React, { useState } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const CreateContact = () => {
+    const [contact, setContact] = useState({name: "", phone: "", email: "", address: ""})
+    const {store, dispatch, addContact} = useGlobalReducer();
+    const navigate = useNavigate();
 
-  const {store, dispatch} =useGlobalReducer()
+    const handleCreateContact = async (e) => {
+        e.preventDefault(); // prevents page reload
+
+        if (!contact.name || !contact.phone || !contact.email || !contact.address) {
+            alert("Please complete all fields!");
+            return;
+        }
+        await addContact(contact);
+        navigate("/list_contacts");
+    }
 
     return (
-        <div className="text-center mt-5">
-            <h1>Welcome to the Create Contacts page!</h1>
-            <p>
-                <img src={rigoImageUrl} />
-            </p>
-            <br />
-            <Link to="/">
-                <button className="btn btn-primary">Back Home</button>
+        <div className="container bg-light mt-5 p-3 w-50">
+			<div className = "text-center mt-3">
+				<h3>Add a Contact</h3>
+			</div>
+			
+            <div className = "mb-3">
+				<label htmlFor = "name" className = "ms-2 mb-1">Name</label>
+                <input 
+					id = "name"
+                    className = "form-control"
+                    type = "text"
+					placeholder = "Enter the full name here"
+					onChange = {(e) => setContact({...contact, name: e.target.value})}
+					value = {contact.name}
+				/>
+			</div>
+            
+            <div className = "mb-3">
+				<label htmlFor = "phone" className = "ms-2 mb-1">Phone</label>
+                <input 
+                    id = "phone"
+                    className = "form-control"
+					type = "text"
+					placeholder = "Enter the full phone number here"
+					onChange = {(e) => setContact({...contact, phone: e.target.value})}
+					value = {contact.phone}
+				/>
+			</div>
+
+            <div className = "mb-3">
+				<label htmlFor = "email" className = "ms-2 mb-1">Email</label>
+                <input 
+                    id = "email"
+                    className = "form-control"
+					type = "text"
+					placeholder = "Enter the full email address here"
+					onChange = {(e) => setContact({...contact, email: e.target.value})}
+					value = {contact.email}
+				/>
+			</div>
+
+            <div className = "mb-3">
+				<label htmlFor = "address" className = "ms-2 mb-1">Address</label>
+                <input 
+                    id = "address"
+                    className = "form-control"
+					type = "text"
+					placeholder = "Enter the full address here"
+					onChange = {(e) => setContact({...contact, address: e.target.value})}
+					value = {contact.address}
+				/>
+			</div>
+            <button 
+                className = "btn btn-primary m-3"
+                onClick = {(e) => handleCreateContact(e)}
+            >
+                Add Contact
+            </button>
+            <Link to = "/">
+                <button className = "btn btn-primary m-3">Back Home</button>
             </Link>
         </div>
     );
