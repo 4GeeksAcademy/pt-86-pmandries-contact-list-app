@@ -23,7 +23,7 @@ export function StoreProvider({ children }) {
         deleteContact: (payload) => deleteContact(dispatch, payload)
     }   
 
-    return <StoreContext.Provider value={{ store, dispatch }}>
+    return <StoreContext.Provider value={{ store, dispatch, ...actions }}>
         {children}
     </StoreContext.Provider>
 }

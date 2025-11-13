@@ -1,10 +1,12 @@
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 export const ListContacts = () => {
 
-  const {store, dispatch} =useGlobalReducer()
+  const {store, dispatch, fetchContacts} = useGlobalReducer();
+  const { contacts, setContacts } = useState([]);
 
     return (
         <div className = " contatiner text-center mt-5">
@@ -13,7 +15,7 @@ export const ListContacts = () => {
                 <img src={rigoImageUrl} />
             </p>
                 <ul className="list-group">
-                    {/* Map over the 'todos' array from the store and render each item as a list element */}
+                    {/* Map over the 'contacts' array from the store and render each item as a list element */}
                     {store && store.contacts?.map((item) => {
                         return (
                             <li

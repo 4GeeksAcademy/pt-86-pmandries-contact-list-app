@@ -3,9 +3,10 @@ import { isRouteErrorResponse } from "react-router-dom";
 // fetch the Agenda
 export const fetchAgenda = async (dispatch, payload) => {
     let response = await fetch("https://playground.4geeks.com/contact/agendas/pmandries")
-    let data = response.json();
+    let data = await response.json();
 
-    if (data.details == "Agenda 'pmandries' doesn't exists.") {
+    console.log(data.detail)
+    if (data.detail == `Agenda "pmandries" doesn't exist.`){
         createAgenda();
     }
 
@@ -24,7 +25,7 @@ export const createAgenda = async (dispatch, payload) => {
         method: "POST",
         headers: { "Content_type": "application/json" }
     });
-    let data = response.json();
+    let data = await response.json();
     fetchAgenda(dispatch);
 }
 
