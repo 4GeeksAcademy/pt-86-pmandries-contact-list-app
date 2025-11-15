@@ -13,8 +13,8 @@ export const initialStore=()=>{
         background: null,
       }
     ],
-    contacts: [], // contacts starts as an empty array
-    agenda: "" // start agendas as an empty array
+    agenda: "", // start agendas as an empty array
+    contacts: [] // contacts starts as an empty array
   }
 }
 
@@ -30,7 +30,7 @@ export default function storeReducer(store, action = {}) {
       };
 
     case 'set_agenda' : //you call set agenda in your fetch agenda function
-    //to send the data to the stsre and update it
+                        //to send the data to the store and update it
 
       return {
         ...store,
@@ -38,7 +38,7 @@ export default function storeReducer(store, action = {}) {
         contacts: action.payload.contacts
       };
     
-    case 'set_contact' :
+    case 'set_contacts' :
 
          return {
           ...store,

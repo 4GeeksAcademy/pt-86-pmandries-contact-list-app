@@ -23,11 +23,11 @@ export const Navbar = () => {
 						<button className = "btn btn-primary m-3">Return Home</button>
 					</Link>
 				</div>
-				<div className="">
+				{/* <div className="">
 					<Link to="/demo">
 						<button className="btn btn-primary ml-3">Demo</button>
 					</Link>
-				</div>
+				</div> */}
 			</div>
 		</nav>
 	);

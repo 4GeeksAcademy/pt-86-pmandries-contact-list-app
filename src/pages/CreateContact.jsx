@@ -13,15 +13,16 @@ export const CreateContact = () => {
         e.preventDefault(); // prevents page reload
 
         if (!contact.name || !contact.phone || !contact.email || !contact.address) {
-            alert("Please complete all fields!");
+            alert("Please complete all fields");
             return;
         }
         await addContact(contact);
+        console.log(contact);
         navigate("/list_contacts");
     }
 
     return (
-        <div className="container bg-light mt-5 p-3 w-50">
+        <div className="container bg-light mt-5 p-3 w-50 shadow p-3 mb-5 bg-white rounded">
 			<div className = "text-center mt-3">
 				<h3>Add a Contact</h3>
 			</div>

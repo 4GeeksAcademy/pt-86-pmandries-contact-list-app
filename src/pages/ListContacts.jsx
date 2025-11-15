@@ -2,45 +2,41 @@ import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import ContactCard from "../components/ContactCard.jsx";
 
 export const ListContacts = () => {
 
   const {store, dispatch, fetchContacts} = useGlobalReducer();
-  const { contacts, setContacts } = useState([]);
+  const [ contacts, setContacts ] = useState([]);
 
+  useEffect(() => {
+        fetchContacts()
+        setContacts(store.contacts)
+    }, [])
+
+    useEffect(()=>{
+        setContacts(store.contacts)
+    }, [store.contacts])
     return (
-        <div className = " contatiner text-center mt-5">
-            <h1>Welcome to the List Contacts page!</h1>
-            <p>
-                <img src={rigoImageUrl} />
-            </p>
-                <ul className="list-group">
-                    {/* Map over the 'contacts' array from the store and render each item as a list element */}
-                    {store && store.contacts?.map((item) => {
-                        return (
-                            <li
-                                key={item.id}  // React key for list items.
-                                className="list-group-item d-flex justify-content-between"
-                                style={{ background: item.background }}> 
-              
-                                {/* Link to the detail page of this contact. */}
-                                <Link to={"/single_contact/" + item.id}>Link to: {item.title} </Link>              
-                                <button className="btn btn-success" 
-                                    onClick={() => dispatch({
-                                        type: "add_task", 
-                                        payload: { id: item.id }
-                                    })}>
-                                    View Contact
-                                </button>
-                            </li>
-                        );
-                    })}
-                </ul>
-
+        <div className = " contatiner text-center bg-light">
+            <h1 className = "mt-1">Contact List</h1>
+            <div>
+                {contacts?.length > 0 ? contacts.map((contact, index) => {
+                    return (
+                        <ContactCard
+                            key = {contact.id}
+                            contact = {contact}
+                        />
+                    )
+                })
+                :
+                <h2>Add a Contact</h2>
+                }
+            </div>
                 <br />
                 <div>
                     <Link to="/">
-                        <button className="btn btn-primary">Return Home</button>
+                        <button className="btn btn-primary" style = {{marginBottom: 100}}>Return Home</button>
                     </Link>
                 </div>
         </div>
