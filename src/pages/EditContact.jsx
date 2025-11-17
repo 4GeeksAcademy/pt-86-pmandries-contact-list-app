@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const EditContact = () => {
     const [contact, setContact] = useState({name: "", phone: "", email: "", address: ""})
-    const {store, dispatch, addContact} = useGlobalReducer();
+    const {store, dispatch, fetchContacts, addContact} = useGlobalReducer();
     const navigate = useNavigate();
+    const { theId } = useParams();
 
+    useEffect(() => {
+        const singleContact = store.contacts.find(contact => contact.id === parseInt(theId));
+        if (singleContact) {
+          setContact(singleContact)
+        } else {
+          fetchContacts()
+          .then((foundContacts) => {
+            const foundContact = foundContacts.find(contact => contact.id === parseInt(theId));
+            return (foundContact)
+          })
+          .then((foundContact) => {
+            setContact(foundContact);
+          })
+        }
+    }, [])
+    
     const handleEditContact = async (e) => {
         e.preventDefault(); // prevents page reload
 
@@ -31,9 +48,9 @@ export const EditContact = () => {
 					id = "name"
                     className = "form-control"
                     type = "text"
-					placeholder = "Current name displays here"
+					placeholder = ""
 					onChange = {(e) => setContact({...contact, name: e.target.value})}
-					value = {contact.name}
+					value = "Name"
 				/>
 			</div>
             
@@ -43,9 +60,9 @@ export const EditContact = () => {
                     id = "phone"
                     className = "form-control"
 					type = "text"
-					placeholder = "Current phone displays here"
+					placeholder = ""
 					onChange = {(e) => setContact({...contact, phone: e.target.value})}
-					value = {contact.phone}
+					value = "Phone"
 				/>
 			</div>
 
@@ -55,9 +72,9 @@ export const EditContact = () => {
                     id = "email"
                     className = "form-control"
 					type = "text"
-					placeholder = "Current email address displays here"
+					placeholder = ""
 					onChange = {(e) => setContact({...contact, email: e.target.value})}
-					value = {contact.email}
+					value = "Email"
 				/>
 			</div>
 
@@ -67,9 +84,9 @@ export const EditContact = () => {
                     id = "address"
                     className = "form-control"
 					type = "text"
-					placeholder = "Current address displays here"
+					placeholder = ""
 					onChange = {(e) => setContact({...contact, address: e.target.value})}
-					value = {contact.address}
+					value = "Address"
 				/>
 			</div>
             <button 

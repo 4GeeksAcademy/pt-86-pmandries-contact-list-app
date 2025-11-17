@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function ContactCard ({ contact }) {
 
-    const { store, dispatch, deleteContact } = useGlobalReducer()
+    const { store, dispatch, fetchContacts, deleteContact } = useGlobalReducer()
 
     return (
         <div>

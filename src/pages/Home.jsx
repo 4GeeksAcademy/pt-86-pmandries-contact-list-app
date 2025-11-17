@@ -16,6 +16,19 @@ export const Home = () => {
 			<p>
 				<img src={rigoImageUrl} />
 			</p>
+			<h4>Rigo CRM is a one-stop app to take care of all of your CRUD!</h4>
+			<div className = "mx-auto w-25 text-start">
+			<h5>
+				You can:
+					<ul>
+						<li>Create</li>
+						<li>Read</li>
+						<li>Update</li>
+						<li>Delete</li>
+					</ul>
+				...to your hearts content! :)
+			</h5>
+			</div>
 		</div>
 	);
 }; 

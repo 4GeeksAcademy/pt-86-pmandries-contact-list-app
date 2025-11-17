@@ -17,7 +17,7 @@ export const CreateContact = () => {
             return;
         }
         await addContact(contact);
-        console.log(contact);
+        // console.log(contact);
         navigate("/list_contacts");
     }
 
@@ -74,15 +74,20 @@ export const CreateContact = () => {
 					value = {contact.address}
 				/>
 			</div>
-            <button 
-                className = "btn btn-primary m-3"
-                onClick = {(e) => handleCreateContact(e)}
-            >
-                Add Contact
-            </button>
-            <Link to = "/">
-                <button className = "btn btn-primary m-3">Return Home</button>
-            </Link>
+            <div className = "d-flex justify-content-center">
+                <button 
+                    className = "btn btn-primary mx-2"
+                    onClick = {(e) => handleCreateContact(e)}
+                >
+                    Add Contact
+                </button>
+                <Link to="/list_contacts">
+                    <button className="btn btn-primary mx-2">List Contacts</button>
+                </Link>
+                <Link to = "/">
+                    <button className = "btn btn-primary mx-2">Return Home</button>
+                </Link>
+            </div>
         </div>
     );
 }; 

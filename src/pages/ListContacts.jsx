@@ -19,13 +19,16 @@ export const ListContacts = () => {
     }, [store.contacts])
     return (
         <div className = " contatiner text-center bg-light">
-            <h1 className = "mt-1">Contact List</h1>
+            <h1 className = "p-3">Contact List</h1>
             <div>
                 {contacts?.length > 0 ? contacts.map((contact, index) => {
+                    let pictureNumber = index < 10 ? index : index - 9;
+                    // console.log("pictureNumber: " + pictureNumber);
                     return (
                         <ContactCard
-                            key = {contact.id}
-                            contact = {contact}
+                            key = {contact.id} 
+                            contact = {contact} 
+                            pictureNumber={pictureNumber}
                         />
                     )
                 })
