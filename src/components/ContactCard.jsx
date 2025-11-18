@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from 'react-router-dom';
 
-export default function ContactCard ({ contact }) {
+export default function ContactCard ({ contact, pictureNumber }) {
 
     const { store, dispatch, fetchContacts, deleteContact } = useGlobalReducer()
 
@@ -15,7 +15,7 @@ export default function ContactCard ({ contact }) {
                     <p className = "card-text">{contact.email}</p>
                 </div>
                 <div>
-                    <Link to = {"/single_contact/" + contact.id}>
+                    <Link to = {"/single_contact/" + contact.id + "/" + pictureNumber}>
                         <button className = "btn btn-primary mb-3">View Details</button>
                     </Link>
                 </div>

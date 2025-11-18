@@ -2,6 +2,7 @@
 import { Link, useParams } from "react-router-dom";  // To use link for navigation and useParams to get URL parameters
 import PropTypes from "prop-types";  // To define prop types for this component
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";  // Import an image asset
+import profile0 from "../assets/img/profile-0.jpg";
 import profile1 from "../assets/img/profile-1.jpg";
 import profile2 from "../assets/img/profile-2.jpg";
 import profile3 from "../assets/img/profile-3.jpg";
@@ -16,12 +17,12 @@ import React, { useState, useEffect } from "react";
 // import pictureNumber from "./ListContacts";
 
 // Define and export the Single component which displays individual item details.
-export const SingleContact = () => {
+export const SingleContact = props => {
   // Access the global state using the custom hook.
   const { store, dispatch, fetchContacts, editContact, deleteContact } = useGlobalReducer()
   const [ contact, setContact ] = useState({});
   // Retrieve the 'theId' URL parameter using useParams hook.
-  const { theId } = useParams();
+  const { theId, pictureNumber } = useParams();
 
   useEffect(() => {
     const singleContact = store.contacts.find(contact => contact.id === parseInt(theId));
@@ -41,6 +42,8 @@ export const SingleContact = () => {
 
   // let pictureNumber = index < 10 ? index : index - 9;
   // console.log(pictureNumber);
+  let currentUrl = window.location.href.split("/single_contact")[0];
+  let pictureUrl = currentUrl + "/src/assets/img/profile-" + pictureNumber + ".jpg"
 
   return (
     <div style = {{marginBottom: 100}}>
@@ -51,7 +54,7 @@ export const SingleContact = () => {
           <h1>Contact</h1>
         </div>
 
-          <img src={profile1} className="" alt="Profile Picture" />
+          <img src={pictureUrl} className="" alt="Profile Picture" />
 
         <div className = "mt-4">
           <h4>Name: {contact?.name}</h4>
@@ -67,7 +70,7 @@ export const SingleContact = () => {
 					<Link to="/list_contacts">
 					  <button className="btn btn-primary mx-2">List Contacts</button>
 					</Link>
-          <Link to="/edit_contact">
+          <Link to = {"/edit_contact/" + contact.id}>
             <button className="btn btn-primary mx-2" href="#" role="button">
               Edit Contact
             </button>
