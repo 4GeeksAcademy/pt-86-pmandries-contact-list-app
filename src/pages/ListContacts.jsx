@@ -38,7 +38,7 @@ export const ListContacts = () => {
             </div>
                 <br />
                 <div>
-                    <Link to="/">
+                    <Link to = "/">
                         <button className="btn btn-primary" style = {{marginBottom: 100}}>Return Home</button>
                     </Link>
                 </div>

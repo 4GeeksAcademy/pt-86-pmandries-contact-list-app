@@ -42,7 +42,7 @@ export const EditContact = () => {
     const handleEditContact = async (e) => {
         e.preventDefault(); // prevents page reload
 
-        if (!contact.name || !contact.phone || !contact.email || !contact.address) {
+        if (!newContactInfo.name || !newContactInfo.phone || !newContactInfo.email || !newContactInfo.address) {
             alert("Please complete all fields!");
             return;
         }

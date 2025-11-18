@@ -65,7 +65,7 @@ export const fetchContacts = async (dispatch, payload) => {
 // Edit Contacts
 export const editContact = async (dispatch, payload) => {
     let editName = payload.name;
-    let editPhone = payload.name;
+    let editPhone = payload.phone;
     let editEmail = payload.email;
     let editAddress = payload.address;
     
