@@ -68,10 +68,11 @@ export const editContact = async (dispatch, payload) => {
     let editPhone = payload.phone;
     let editEmail = payload.email;
     let editAddress = payload.address;
-    
-    let response = await fetch("https://playground.4geeks.com/contact/agendas/pmandries/contacts/${id}", {
+    let editId = payload.id;
+
+    let response = await fetch(`https://playground.4geeks.com/contact/agendas/pmandries/contacts/${editId}`, {
         method: "PUT",
-        headers: {"Content-type": "app;ication/json"},
+        headers: {"Content-type": "application/json"},
         body: JSON.stringify ({
             name: editName,
             phone: editPhone,
