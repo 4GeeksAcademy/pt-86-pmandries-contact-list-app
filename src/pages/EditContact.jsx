@@ -22,22 +22,6 @@ export const EditContact = () => {
             setNewContactInfo(currentContact[0]);
         }
     }, [store.contacts]);
-
-    // useEffect(() => {
-    //     const singleContact = store.contacts.find(contact => contact.id === parseInt(theId));
-    //     if (singleContact) {
-    //       setContact(singleContact)
-    //     } else {
-    //       fetchContacts()
-    //       .then((foundContacts) => {
-    //         const foundContact = foundContacts.find(contact => contact.id === parseInt(theId));
-    //         return (foundContact)
-    //       })
-    //       .then((foundContact) => {
-    //         setContact(foundContact);
-    //       })
-    //     }
-    // }, [])
     
     const handleEditContact = async (e) => {
         e.preventDefault(); // prevents page reload

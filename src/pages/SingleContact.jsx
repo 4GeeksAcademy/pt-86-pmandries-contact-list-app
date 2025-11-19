@@ -75,9 +75,14 @@ export const SingleContact = props => {
               Edit Contact
             </button>
           </Link>
-          <Link to="/">
-            <button className="btn btn-primary mx-2" href="#" role="button">
-              Delete Contact
+          <Link to="/list_contacts">
+            <button 
+              className="btn btn-primary mx-2" 
+              href="#" 
+              role="button"
+              onClick={() => deleteContact(contact.id)}
+              >
+                Delete Contact
             </button>
           </Link>
         </div>

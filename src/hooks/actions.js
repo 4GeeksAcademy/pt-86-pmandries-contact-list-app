@@ -88,7 +88,7 @@ export const editContact = async (dispatch, payload) => {
 export const deleteContact = async (dispatch, payload) => {
     let response = await fetch(`https://playground.4geeks.com/contact/agendas/pmandries/contacts/${payload}`, {
         method: "DELETE",
-        headers: {"Content-type": "app;ication/json"}
+        headers: {"Content-type": "applgitication/json"}
     });
     // refresh the contact list
     fetchContacts(dispatch);
