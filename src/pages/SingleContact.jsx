@@ -48,7 +48,6 @@ export const SingleContact = props => {
   return (
     <div style = {{marginBottom: 100}}>
       <div className="card mt-3 mx-auto w-50 shadow p-3 mb-5 bg-white rounded">
-        <h1></h1>
         {/* Display the title of the contact element dynamically retrieved from the store using theId. */}
         <div className = "contatiner text-center bg-light">
           <h1>Contact</h1>
